@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
 const gallery = [
   { gambar: "/images__1_-removebg-preview.png", nama: "HTML" },
@@ -6,83 +6,136 @@ const gallery = [
   { gambar: "/images__2_-removebg-preview.png", nama: "CSS" },
 ];
 
+const education = [
+  { level: "Sekolah Dasar", school: "SDN Panaragan 1" },
+  { level: "Sekolah Menengah Pertama", school: "SMPN 6 Bogor" },
+  { level: "Sekolah Menengah Atas", school: "SMAN 10 Bogor" },
+  {
+    level: "Perguruan Tinggi",
+    school: "Universitas Pendidikan Indonesia",
+    detail: "Pendidikan Ilmu Komputer",
+  },
+];
+
 function Section() {
   return (
-    <>
-      <div className="profile" id="profile">
-        <h1>ABOUT ME</h1>
-        <div className="profile-content">
-          <div className="profile-text">
-            <h2>PROFILE</h2>
-            <p>
-              Perkenalkan nama saya aufaa prie adrianto mahasiswa pendidikan
-              ilmu komputer di universitas pendidikan indonesia. Saya sedang
-              belajar membuat website dengan css dan HTML.
-            </p>
+    <section className="profile landing-profile">
+      <div className="profile-content">
+        <div className="profile-text">
+          <p className="profile-kicker">MAHASISWA / WEB DEVELOPMENT LEARNER</p>
+          <h1>
+            Halo, saya <span className="profile-name">Aufaa Prie Adrianto.</span>
+          </h1>
+          <p className="profile-role">
+            Mahasiswa Pendidikan Ilmu Komputer di Universitas Pendidikan
+            Indonesia.
+          </p>
+          <p className="profile-copy">
+            Saya sedang belajar membangun website dengan HTML dan CSS, sambil
+            terus mengeksplorasi cara membuat pengalaman digital yang jelas dan
+            mudah digunakan.
+          </p>
+          <div className="profile-actions">
+            <Link className="profile-button" to="/contact">
+              Hubungi saya <span aria-hidden="true">&#8599;</span>
+            </Link>
+            <Link className="profile-link" to="/gallery">
+              Lihat galeri
+            </Link>
           </div>
-          <img src="/IMG_7924.JPG" alt="foto sendiri" />
+          <div className="learning-list" aria-label="Sedang dipelajari">
+            <span>Sedang dipelajari</span>
+            <span className="learning-tag">HTML</span>
+            <span className="learning-tag">CSS</span>
+            <span className="learning-tag">Web design</span>
+          </div>
         </div>
+        <img src="/IMG_7924.JPG" alt="Aufaa Prie Adrianto" />
       </div>
+    </section>
+  );
+}
 
-      <div className="bottom-content">
-        <div className="edu-profile" id="education">
-          <h2>Education</h2>
-          <ul>
-            <li>SDN PANARAGAN 1</li>
-            <li>SMPN 6 BOGOR</li>
-            <li>SMAN 10 BOGOR</li>
-          </ul>
-        </div>
+export function EducationPage() {
+  return (
+    <section className="education-page">
+      <header className="section-heading">
+        <p>RIWAYAT PENDIDIKAN</p>
+        <h1>Pendidikan</h1>
+        <span>Perjalanan belajar saya sejauh ini.</span>
+      </header>
+      <ol className="education-list">
+        {education.map((item, index) => (
+          <li className="education-row" key={item.school}>
+            <span className="education-number">0{index + 1}</span>
+            <span className="education-level">{item.level}</span>
+            <div className="education-school">
+              <h2>{item.school}</h2>
+              {item.detail && <p>{item.detail}</p>}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
 
-        <div className="sosmed" id="sosmed">
-          <h2>Sosmed</h2>
-          <ul>
-            <li>
-              <a
-                href="https://www.instagram.com/13faaaa/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Instagram
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.linkedin.com/in/aufaa-prie-adrianto-b4503437b/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LinkedIn
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://github.com/Aufaa13"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Github
-              </a>
-            </li>
-          </ul>
-        </div>
+export function ContactPage() {
+  const socialLinks = [
+    { name: "Instagram", href: "https://www.instagram.com/13faaaa/" },
+    {
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/in/aufaa-prie-adrianto-b4503437b/",
+    },
+    { name: "GitHub", href: "https://github.com/Aufaa13" },
+  ];
 
-        <div className="contact" id="contact">
-          <h2>Contact</h2>
-          <p>aufaaadrianto7@gmail.com</p>
-          <p>WhatsApp: 087813031688</p>
-        </div>
+  return (
+    <section className="contact-page">
+      <header className="section-heading">
+        <p>HUBUNGI SAYA</p>
+        <h1>Contact</h1>
+        <span>Terbuka untuk obrolan, ide, dan kolaborasi.</span>
+      </header>
+      <div className="contact-list">
+        <a className="contact-row" href="mailto:aufaaadrianto7@gmail.com">
+          <span className="contact-type">Email</span>
+          <strong>aufaaadrianto7@gmail.com</strong>
+          <span className="contact-arrow" aria-hidden="true">&#8599;</span>
+        </a>
+        <a className="contact-row" href="tel:+6287813031688">
+          <span className="contact-type">WhatsApp</span>
+          <strong>+62 878 1303 1688</strong>
+          <span className="contact-arrow" aria-hidden="true">&#8599;</span>
+        </a>
+        {socialLinks.map((link) => (
+          <a
+            className="contact-row"
+            href={link.href}
+            key={link.name}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className="contact-type">Sosial media</span>
+            <strong>{link.name}</strong>
+            <span className="contact-arrow" aria-hidden="true">&#8599;</span>
+          </a>
+        ))}
       </div>
+    </section>
+  );
+}
 
-      <div className="galeri" id="galeri">
-        <h2>Galery</h2>
-        <div className="galeri-images">
-          {gallery.map((item, index) => (
-            <img key={index} src={item.gambar} alt={item.nama} />
-          ))}
-        </div>
+export function GalleryPage() {
+  return (
+    <section className="galeri">
+      <h1>GALLERY</h1>
+      <div className="galeri-images">
+        {gallery.map((item) => (
+          <img key={item.nama} src={item.gambar} alt={item.nama} />
+        ))}
       </div>
-    </>
+    </section>
   );
 }
 
