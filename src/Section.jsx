@@ -128,11 +128,20 @@ export function ContactPage() {
 
 export function GalleryPage() {
   return (
-    <section className="galeri">
-      <h1>GALLERY</h1>
+    <section className="gallery-page">
+      <header className="section-heading">
+        <p>HAL YANG SAYA PELAJARI</p>
+        <h1>Galeri</h1>
+        <span>Beberapa tools dan teknologi yang menemani proses belajar saya.</span>
+      </header>
       <div className="galeri-images">
         {gallery.map((item) => (
-          <img key={item.nama} src={item.gambar} alt={item.nama} />
+          <article className="gallery-card" key={item.nama}>
+            <div className="gallery-image">
+              <img src={item.gambar} alt="" />
+            </div>
+            <h2>{item.nama}</h2>
+          </article>
         ))}
       </div>
     </section>
